@@ -1,7 +1,8 @@
-import requests #pip install requests
-import hashlib
-import sys
-#here we are making request from pwnedpasswords site and taking its response
+import requests #pip install requests:- is a Python HTTP library
+import hashlib #use pip install hashlib :-  hashing function takes variable length of bytes and converts it into a fixed length sequence
+import sys 
+
+#here we are making request from pwnedpasswords (https://haveibeenpwned.com/Passwords) site and taking its response
 def request_api_data(query_char):
 	url='https://api.pwnedpasswords.com/range/'+query_char
 	res=requests.get(url)
@@ -9,7 +10,7 @@ def request_api_data(query_char):
 		raise RuntimeError(f"Error fetching:{res.status_code}, check the api and try again")
 	return res
 	
-
+# here I'm checking the output
 def get_password_leaks_count(hashes,hash_to_check):
 	hashes=(line.split(":") for line in hashes.text.splitlines())
 	for h,count in hashes:
